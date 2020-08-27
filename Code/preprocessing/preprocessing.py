@@ -41,6 +41,7 @@ class PreProc(object):
         self.materials = materials
         self.cur_dir = dirname(__file__)
         self.data_dir = osjoin(self.cur_dir, dirname('../../data/'))
+        self.temp_dir = osjoin(self.data_dir, "temp")
         self.num_res_dir = osjoin(self.data_dir, "NumericalResults")
         self.shockdataset_dir = osjoin(self.data_dir, "shock-datasets")
     
@@ -92,19 +93,22 @@ class PreProc(object):
         if not isdir(src_path):
             print("No src path %s found" % src_path)
             return
+            
+        # boundaryTemp or nodalTemp    
+        data_type += "Temp"                                                                          
+        des_path = osjoin(self.temp_dir, data_type)                                                      
+        results_png_des_path = osjoin(des_path, "ResultsPNG")                                           
+        results_eps_des_path = osjoin(des_path, "ResultsEPS")                                           
+        png_des_path = osjoin(results_png_des_path, mat_dir_name)                           
+        eps_des_path = osjoin(results_eps_des_path, mat_dir_name)                           
         
-        data_type += "Temp"                                                                 # boundaryTemp or nodalTemp
-        des_path = osjoin(self.cur_dir, dirname('../../data/'), data_type)                       # e.g. ../data/nodalTemp/
-        results_png_des_path = osjoin(des_path, "ResultsPNG")                               # e.g. ../data/nodalTemp/ResultsPNG/
-        results_eps_des_path = osjoin(des_path, "ResultsEPS")                               # e.g. ../data/nodalTemp/ResultsEPS/
-        png_des_path = osjoin(results_png_des_path, mat_dir_name)                           # e.g. ../data/nodalTemp/ResultsPNG/Basalt/*.png/
-        eps_des_path = osjoin(results_eps_des_path, mat_dir_name)                           # e.g. ../data/nodalTemp/ResultsEPS/Basalt/*.eps/
-
-        ensure_isdir(des_path)
-        ensure_isdir(results_png_des_path)
-        ensure_isdir(results_eps_des_path)
-        ensure_isdir(png_des_path)
-        ensure_isdir(eps_des_path)
+        ensure_isdir(self.data_dir)                     # e.g. ../data/
+        ensure_isdir(self.temp_dir)                     # e.g. ../data/temp/    
+        ensure_isdir(des_path)                          # e.g. ../data/temp/nodalTemp/             
+        ensure_isdir(results_png_des_path)              # e.g. ../data/temp/nodalTemp/ResultsPNG/   
+        ensure_isdir(results_eps_des_path)              # e.g. ../data/temp/nodalTemp/ResultsEPS/   
+        ensure_isdir(png_des_path)                      # e.g. ../data/temp/nodalTemp/ResultsPNG/Basalt/*.png/
+        ensure_isdir(eps_des_path)                      # e.g. ../data/temp/nodalTemp/ResultsEPS/Basalt/*.eps/
 
         cnt = 0
         unified_cnt = 0
