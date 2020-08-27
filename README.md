@@ -4,7 +4,7 @@
 
 ### 1. Project Description
 
-This project aimed to explore the potential of neural networks as an alternative approach to predict stress distribution when a shockwave is cast on a domain in 2D. The stress distribution is tracked when the maximum stress overtime occurred. Randomised shockwaves were simulated to increase the variance of the dataset. ANSYS Student Edition, an open-source finite element analysis (FEA) software was used to generate stress distribution images and initial condition images were projected via saved boundary conditions, force allocations, material densities, etc. ShockNet, an encoder-decoder, has been designed to extract features from initial condition inputs in a multi-scaled way. Both 3-level and 4-level ShockNets showed good convergence trends within 250 epochs and abilities to render the initial condition inputs into stress contour predictions. TShockNet was also implemented which could also predict numeric maximum and minimum stress values of the result stress field.
+This project aimed to explore the potential of neural networks as an alternative approach to predict stress distribution when a shockwave is cast on a domain in 2D. The stress distribution is tracked when the maximum stress overtime occurred. Randomised shockwaves were simulated to increase the variance of the dataset. ANSYS Student Edition, an open-source finite element analysis (FEA) software was used to generate stress distribution images and initial condition images were projected via saved boundary conditions, force allocations, material densities, etc. ShockNet, an encoder-decoder, has been designed to extract features from initial condition inputs in a multi-scaled way. Both 3-level and 4-level ShockNets show good convergence trends within 250 epochs and abilities to render the initial condition inputs into stress contour predictions. TShockNet was also implemented which could also predict numeric maximum and minimum stress values of the result stress field.
 
 ### 2. Data Generation
 
@@ -14,20 +14,25 @@ This section introduces how data were generated to feed ShockNets.
 
 ANSYS Student Edition ([ANSYS-SE](https://www.ansys.com/en-gb/academic/free-student-products)) provides open-source numerical modelling software packages, where the Explicit Module can be used to simulate events within a short period, e.g. shock propagation. A 2D rectangle was initialised as the domain in this project. The domain was assigned with six different materials: sandstones, dolomite, limestone, granite, basalt and chalks. The lower boundary was set as fixed where the shock would be loaded on the upper boundary.
 
-Heaviside step function was widely used to simulate a shock wave:
+Heaviside step function was widely used to simulate a shock wave (Villarreal 2006; Baty et al., 2007; Baty and Margolin, 2018):
 
 $$H(E) = \begin{cases} E,&{if\ t\in[t_{start}, t_{end}]} \\ 0,&others \end{cases}$$
 
 where $E$ stands for the kinetic energy for each node and $t_{start}$ and $t_{end}$ define when the shock was added to upper boundary. Figure 1 shows screenshots of established domain in ANSYS-SE and the initialisations. Initial conditions and simulated maximum and minimum stress values were saved as the name of the predicted stress field.
 | ![figure1.png](./img/figure1/figure1.png) |
 | :--------------------------------------: |
-| *Figure1* : Screenshots from ANSYS-SE. a) and b) were examples for the initial condition and solved results from ANSYS-SE. The lower part c) refers to discontinuities in force. |
+| *Figure 1* : Screenshots from ANSYS-SE. a) and b) were examples for the initial condition and solved results from ANSYS-SE. The lower part c) refers to discontinuities in force. |
+
+Two types of datasets were generated: boundary datasets (BDs) and nodal datasets (NDs) and their effects on training ShockNet was discussed in [5](#5.-Results). The difference between BDs and NDs is the shock force allocation selection: BDs have the entire upper boundary loaded with the instantaneous force, whereas NDs only have randomly selected nodes on the upper boundary to be initialised.  Figure 2 shows the difference between BDs and NDs initial conditions and results from ANSYS-SE.
+| ![figure2.png](./img/figure2/figure2.png) |
+| :--------------------------------------: |
+| *Figure 2* : Initial force and supporting conditions (left) and corresponding numerical results (right). a) & b) are examples with forces cast on the entire upper boundary where the numerical result showed symmetric stress field, whereas for c) & d) the load was added on randomly selected nodes which led to asymmetricity. |
 
 #### 2.2. Initial Condition Projection
-From the saved initial conditions saved in the file name, initial conditions have been projected into RGB channelled images as shown in figure3. 
+From the saved initial conditions saved in the file name, initial conditions have been projected into RGB channelled images as shown in Figure 3. 
 | ![figure3.png](./img/figure3/figure3.png) |
 | :--------------------------------------: |
-| *Figure2* : Initial condition projection examples. Figure a) denotes the force discontinuity cast on the source (dark yellow) in figure b). b) illustrates the components in an initial condition image and c) explains how the colour scale related to the physical parameters. |
+| *Figure 3* : Initial condition projection examples. Figure a) denotes the force discontinuity cast on the source (dark yellow) in figure b). b) illustrates the components in an initial condition image and c) explains how the colour scale related to the physical parameters. |
 
 ### 3. ShockNet
 ShockNet was designed based on following conceptions:
@@ -35,33 +40,66 @@ ShockNet was designed based on following conceptions:
 2. Residual block: enable deeply structured neural network without gradient vanishing (Kaiming et al., 2017)
 3. Squeeze and excitation block: improve learning abilities with negligible computational cost in addition (Hu et al., 2017)
 
-The general architecture of ShockNet was shown in figure3 and for each depth/level, the structure was zoomed in in figure4. 
+The general architecture of ShockNet was shown in Figure 4 and for each depth/level, the structure was zoomed in in Figure 5. 
 | ![figure5.png](./img/figure5/figure5.png) |
 | :--------------------------------------: |
-| *Figure3* : ShockNet architecture. SL numbers were labelled with the defined scope. Red and purple arrows represent max pooling and transpose convolution layers. |
+| *Figure 4* : ShockNet architecture. SL numbers were labelled with the defined scope. Red and purple arrows represent max pooling and transpose convolution layers. |
 
 | ![figure4.png](./img/figure4/shocknet-block.png) |
 | :--------------------------------------: |
-| *Figure4* : A ShockNet block at one SL. Each residual block contains two convolutional blocks, followed by a batch normalisation for each. A copy of Xp was reserved. The output from the second batch normalisation layer would be (1) sent to the SE block and (2) saved as a copy. Channel-wise scales are output by the SE block and multiply with the saved copy. The multiplied result would then be added with the reserved copy of Xp. |
+| *Figure 5* : A ShockNet block at one SL. Each residual block contains two convolutional blocks, followed by a batch normalisation for each. A copy of Xp was reserved. The output from the second batch normalisation layer would be (1) sent to the SE block and (2) saved as a copy. Channel-wise scales are output by the SE block and multiply with the saved copy. The multiplied result would then be added with the reserved copy of Xp. |
 
 ### 4. Code Structure and Utilities
-Figure6 illustrated how codes in this project were managed and structured. The workflow could be summarised in following steps:
-1. Run automated simulations in ANSYS-SE ([automation](./Code/automation/))
-| ![figure6.png](./img/figure6/code_structure.png) |
+Figure 6 illustrated how codes in this project were managed and structured. The workflow could be summarised in following steps:
+1. Run [automation](.Code/automation/) codes to simulate via ANSYS-SE 
+  * $\rightarrow$ [NumericalResults](.data/NumericalResults/)
+2. Run [preprocessing](.Code/preprocessing/) scripts to clean, reshape, rename and restore ground truth stress fields 
+  * $\rightarrow$ [shock-datasets](.data/shock-datasets)
+3. Run [```main()```](.Code/main.py) using available GPU to run training sessions, save trained models and experiment results, and predict stress fields using saved ShockNets
+  * $\rightarrow$ [experiments](.Code/experiments/)
+  * $\rightarrow$ [predictions](.Code/predictions/)
+4. Run [postprocessing](.Code/postprocessing/) codes to plot epoch series analysis, visual comparison between ground truths and ShockNet-predicted stress fields
+  * $\rightarrow$ [analysis](.Code/analysis/)
+    To run codes in this project, instructions in details can be found [here](./Code/README.md)
+
+| ![figure5.png](./img/figure6/code_structure.png) |
 | :--------------------------------------: |
-|       *Figure5* : Code structure.        |
+|       *Figure 6* : Code structure.       |
 
 ### 5. Results
-| ![figure7.png](./img/figure7/ND_vs_BD.png) |
-| :--------------------------------------: |
-| *Figure6* : Comparison of ShockNet4 between training with BDs and training with BDs. Figure a) and b) refer to log-log plots. |
+Results are showed in this sections. 
 
+#### 5.1. Dataset Comparison
+Figure 7 compared the trend of convergence when trained on BDs and NDs. ShockNet4 trained with BDs converged faster in a more stable pattern but stagnated after only ten epochs. By comparison, when trained with NDs, the ShockNet4 showed the consistent potential to reach lower loss for both MSE and MAE. 
+| ![figure6.png](./img/figure7/ND_vs_BD.png) |
+| :--------------------------------------: |
+| *Figure 7* : Comparison of ShockNet4 between training with BDs (boundary datasets) and training with NDs (nodal datasets). Figure a) and b) refer to log-log plots. |
+
+#### 5.2. ShockNet Epoch Series
+Figure 8 show the performance of ShockNet for different SL numbers and initialisation methods when trained with NDs. ShockNet4 was initialised with both Kaiming uniform (KUI) and normal initialisation (KNI) methods (ShockNet4-uni and ShockNet4-norm, respectively), and ShockNet3 initialised with KNI (ShockNet3-norm) was also added for parallel comparison. 
+
+All three curves in Figure 8 show good convergence trends where the optimisers were working to reach the global minimum.
 | ![figure8.png](./img/figure8/figure8.png) |
 | :--------------------------------------: |
-| *Figure7* : Convergence comparisons. Each graph contains training and validation MSE and MAE of experimenting with (1) ShockNet4 using KNI, (2) ShockNet4 using KUI, and (3) ShockNet3 using KNI. Figure a) and b) refer to log-log plots. |
+| *Figure 8* : Convergence comparisons. Each graph contains training and validation MSE and MAE of experimenting with (1) ShockNet4 using KNI, (2) ShockNet4 using KUI, and (3) ShockNet3 using KNI. Figure a) and b) refer to log-log plots. |
 
+#### 5.3. Prediction Performance
+ShockNet4 trained with different epochs were saved and reused to predict stress fields (Figure 9 & Figure 10). Samples were randomly extracted from the prediction subset. It took an average of 0.063s to generate a stress field prediction for ShockNet4 (on NVIDA’s Tesla P100-PCIE-16GB), comparing to the average time consumption of 20s with ANSYS-SE. 
+| ![figure8.png](./img/figure9/ShockNet4_prog_pred_comp.png) |
+| :--------------------------------------: |
+| *Figure 9* : Visual comparisons between predicted maximum stress field and the ground truth result (first column). ShockNet4 was used to generate predictions. Rows represent different material samples, whereas the last five columns refer to the different number of epochs of which ShockNet4 had been trained for. |
 
+| ![figure9.png](./img/figure10/general_comp.png) |
+| :--------------------------------------: |
+| *Figure 10* : Results generated from ShockNet4 where corresponding initial conditions and ground truths are presented. MSE and MAE are calculated.  Basalt was selected as the sample material. |
 
+#### 5.4. Transferred Learning Performance
+Transferred learning shows that the ability of ShockNet to generalise what has been learnt to a new dataset of different resolution. Experiments on the performance of transferred learning were shown in Figure 11. 
+| ![figure10.png](./img/figure11/transf_learning.png) |
+| :--------------------------------------: |
+| *Figure 11* : Comparison between ordinary learning using 48x96 dataset and transferred learning using 64x128 dataset. Parameters were inherited from the ShockNet4 after trained for 250 epochs with 48x96 dataset. |
 
-
-#### 
+### References
+* Kaiming et al., 2017. 
+* Ronneberger et al., 2015. 
+* Hu et al., 2017.  
