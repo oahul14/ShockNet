@@ -9,7 +9,6 @@
 3. [ShockNet](#3.-ShockNet)
 4. [Code Structure](#4.-Code-Structure-and-Utilities)
 5. [Results](#5.-Results)
-6. [References](#6.-References)
 
 ### 1. Project Description
 
@@ -109,7 +108,7 @@ Transferred learning shows that the ability of ShockNet to generalise what has b
 | :--------------------------------------: |
 | *Figure 11* : Comparison between ordinary learning using 48x96 dataset and transferred learning using 64x128 dataset. Parameters were inherited from the ShockNet4 after trained for 250 epochs with 48x96 dataset. |
 
-### 6. References
+### References
 * Baty, R.S. and Margolin, L.G., 2018. Modern infinitesimals and the entropy jump across an inviscid shock wave. International Journal of Aeroacoustics, 17(4-5), pp.502-520.
 * Baty, R.S., Tucker, D.H. and Stanescu, D., 2008. Nonstandard jump functions for radially symmetric shock waves (No. LA-14380). Los Alamos National Laboratory (LANL), Los Alamos, NM.
 * Villarreal, F., 2006. Heaviside generalized functions and shock waves for a Burger kind equation. Integral Transforms and Special Functions, 17(2-3), pp.213-219.
