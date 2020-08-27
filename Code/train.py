@@ -1,3 +1,5 @@
+import torch
+
 def train(model, device, optimiser, mseloss, l1loss, data_loader):
     model.train()
     train_mse, train_mae = 0, 0

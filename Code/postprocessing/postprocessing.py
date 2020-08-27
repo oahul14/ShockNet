@@ -4,19 +4,38 @@ import pandas as pd
 import PIL.Image as Image
 import os
 from os.path import join as osjoin
+from os.path import isdir as isdir
 import matplotlib.pyplot as plt
+
+def ensure_isdir(path):
+    """Ensure the path exists
+
+    Args:
+        path (str): target path
+    """
+    if not isdir(path):
+        os.mkdir(path)
 
 class PostProc(object):
 
     def __init__(self):
         self.cur_dir = os.path.dirname(__file__)
-        self.exp_dir = osjoin(self.cur_dir, os.path.dirname('../../FinalReport/experiments/'))
-        self.pred_dir = osjoin(self.cur_dir, os.path.dirname('../../predictions/'))
+
+        self.exp_dir = osjoin(self.cur_dir, os.path.dirname('../experiments/'))
+        if not isdir(self.exp_dir):
+            print("%s not found" % self.exp_dir)
+            raise NameError
+
+        self.pred_dir = osjoin(self.cur_dir, os.path.dirname('../predictions/'))
+        self.shocknet4_dir = osjoin(self.pred_dir, "ShockNet4")
+        self.pred_pred_dir = osjoin(self.shocknet4_dir, "nodal_ShockNet_adadelta_200-250", "Prediction")
+
         self.data_dir = osjoin(self.cur_dir, os.path.dirname('../../data/shock-datasets/'))
         self.nodal_dir = osjoin(self.data_dir, "nodal")
-        self.shocknet4_dir = osjoin(self.cur_dir, os.path.dirname('../../predictions/'), "ShockNet4")
-        self.pred_pred_dir = osjoin(self.shocknet4_dir, "nodal_ShockNet_adadelta_200-250", "Prediction")
-        self.analysis_dir = osjoin(self.cur_dir, os.path.dirname('../../FinalReport/analysis/'))
+        
+        self.analysis_dir = osjoin(self.cur_dir, os.path.dirname('../analysis/'))
+        ensure_isdir(self.analysis_dir)
+        
         self.mats = ["Granite", "Basalt", "Limestone", "Dolomite", "Sandstones", "Chalks"]
         plt.style.use("seaborn")
 
@@ -120,9 +139,7 @@ class PostProc(object):
         if title:
             fig.suptitle(title, fontsize=20)
             fig.subplots_adjust(top=0.9)
-        plt.savefig(osjoin(src_dir, fname))
-        if to_ana:
-            plt.savefig(osjoin(self.analysis_dir, fname))
+        plt.savefig(osjoin(self.analysis_dir, fname))
 
     def get_random_img_names(self):
         grnd_path = self.pred_pred_dir
@@ -178,7 +195,6 @@ class PostProc(object):
                     ax[i][dic[num]].set_title(title)
                 ax[i][dic[num]].grid(False)
         fig.tight_layout()
-
         plt.savefig(osjoin(self.analysis_dir, fname))
     
     def shock_img_comp(self, fname, num, figsize, dpi=300):
@@ -261,23 +277,23 @@ if __name__ == "__main__":
                                                   For ND vs BD epoch series: python3 postprocessing.py -f ND_vs_BD \n\
                                       For transferred learning epoch series: python3 postprocessing.py -f transf_learning \n\
                                             For prediction change over time: python3 postprocessing.py -f shock_img_pred \n\
-                        For initial condition, ground truth and predictions: python3 postprocessing.py -f prog_pred \n\
+                        For initial condition, ground truth and predictions: python3 postprocessing.py -f prog_pred_comp \n\
                     """
 
     parser = argparse.ArgumentParser(description=description, formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("--func", "-f", 
+    parser.add_argument("--func", "-f", default="epoch_series",
                         help="call the exact postprocessing function by name")
-    parser.add_argument("--name", "-n", 
-                        narg="*", default="figure.png", 
+    parser.add_argument("--name", "-n", type=str,
+                        default="figure.png", 
                         help="figure name to be saved")
-    parser.add_argument("--alpha", "-a", type=int,
-                        narg=1, default=0.6,
+    parser.add_argument("--alpha", "-a", type=float,
+                        default=0.6,
                         help="alpha channel of the plot")
     parser.add_argument("--dpi", "-d", type=int,
-                        narg=1, default=250,
+                        default=250,
                         help="dpi")
     parser.add_argument("--sample", "-s", type=int,
-                        narg=1, default=6, 
+                        default=6, 
                         help="number of samples for general comparison")
     args = parser.parse_args()
     func, fname, a, dpi, nsample = args.func, args.name, args.alpha, args.dpi, args.sample
