@@ -2,7 +2,7 @@
 
 ## ANSYS-SE Automation
 1. Download and install up-to-date ANSYS-SE from [here](https://www.ansys.com/en-gb/academic/free-student-products)
-2. Open [shock_automation](../shock_automation) and run ```shock_automation.wbpj``` file in ANSYS workbench.
+2. Unzip and open [shock_automation](../shock_automation) and run ```shock_automation.wbpj``` file in ANSYS workbench.
 3. Double click **Mechanical** and open (or just copy & paste) [```SimShock.py```](./automation/SimShock.py) in the automation tab.
 4. Run scripts like following in the Python environment provided by **Mechanical**:
 ```
