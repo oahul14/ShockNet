@@ -1,0 +1,547 @@
+ ANSYS
+
+
+
+       AAAAAA   UU    UU  TTTTTTTT   OOOOOO   DDDDDDD   YY    YY  NN    NN  TM
+      AA    AA  UU    UU     TT     OO    OO  DD    DD   YY  YY   NNN   NN
+      AA    AA  UU    UU     TT     OO    OO  DD    DD    YYYY    NNNN  NN
+      AAAAAAAA  UU    UU     TT     OO    OO  DD    DD     YY     NN NN NN
+      AA    AA  UU    UU     TT     OO    OO  DD    DD     YY     NN  NNNN
+      AA    AA  UU    UU     TT     OO    OO  DD    DD     YY     NN   NNN
+      AA    AA   UUUUUU      TT      OOOOOO   DDDDDDD      YY     NN    NN
+
+
+
+
+           Copyright (C) 2018, ANSYS, Inc.  All rights reserved.
+           Unauthorized use, distribution or duplication is prohibited.
+
+
+
+
+ 
+
+
+
+
+                                2020 R1
+                                   
+                 Point Releases and Patches installed:
+                                   
+                       Academic Student 2020 R1
+                             Aqwa 2020 R1
+                          FENSAP-ICE 2020 R1
+
+
+
+
+                            Solver :   EXPLICIT
+                             Build :   AUTODYN-2D Version 2020 R1              
+                Model File Version :   2020 R1
+                        Build Date :   20191203
+                 Current Date/Time :   20200804 10:47 (+0800GMT)
+                          Platform :   64 bit
+                              Beta :   TRUE
+                   User Subroutine :   FALSE
+
+
+
+
+                             IDENT :   admodel                                                                                                                                                                                                                                                         
+                             Title :                                           
+                       Description :                                                                                                                                                                                                                                                                   
+                     Symmetry Type :       Planar
+                       Start Cycle :            0
+                        Start Time :  0.00000E+00
+                         Precision :   Double
+
+
+
+
+   UNITS
+
+                            Length :   millimeter
+                              Mass :   milligram 
+                              Time :   millisec. 
+
+
+
+
+   WRAPUP PARAMETERS
+
+                       Cycle Limit :     10000000
+                        Time Limit :  1.11216E+00
+     Maximum Energy Error Fraction :  9.99999E+05
+            Energy Reference Cycle :            0
+
+
+
+
+   MULTIPLE LOADSTEP DEFINITION
+
+     Step    Type             Step End Time   Static Damping
+
+        1    Standard         1.1122E+00      0.0000E+00
+
+
+
+
+   LOADSTEP OUTPUT CONTROLS
+
+     Step    Results       Value      Restarts       Value      Trackers      Value
+
+        1    Global          -         Global          -         Global          -     
+
+
+
+
+   LOADCASE DEFINITIONS
+
+     Case  WB-ID        Type   Active  Loadsteps:                Used by:
+
+        1  93001    Standard   Step    DOF:  X  Y  Z RX RY RZ    Force                         
+                                  1          v  v  v  v  v  v
+
+
+
+
+   TIME STEP INFORMATION
+
+                 Minimum Time Step :  1.00000E-06
+                 Maximum Time Step :  1.00000E-03
+                 Initial Time Step :  2.83356E-05
+           Time Step Safety Factor :  5.00000E-01
+
+
+
+
+   GRAVITATIONAL CONSTANTS
+
+             Global X Acceleration :  0.00000E+00
+             Global Y Acceleration :  0.00000E+00
+
+
+
+
+   GRAVITATIONAL AND ACCELERATION CONSTANTS - SUM AT START CYCLE
+
+             Total  X Acceleration :  0.00000E+00
+             Total  Y Acceleration :  0.00000E+00
+
+
+
+
+   DAMPING CONSTANTS
+
+               Quadratic Viscosity :  1.00000E+00
+                  Linear Viscosity :  2.00000E-01
+     Apply Lin.vis. in exp. for HE :  No
+                 Hourglass Damping :  1.00000E-01
+                    Static Damping : Per loadstep
+                 Anti-tangle Force :  0.00000E+00
+
+
+
+
+
+ 
+   GLOBAL OUTPUT CONTROLS
+
+                    Save Results On  : Time
+                    Increments :        5.56080E-03
+                    Save Restarts On : Time
+                    Increments :        2.22432E-01
+                    Save Trackers On : Cycles
+                    Increments :        1.00000E+00
+
+
+
+
+   CUTOFF VALUES
+
+                   Velocity Cutoff :  1.00000E-06
+                 Soundspeed Cutoff :  1.00000E-06
+                     Radius Cutoff :  1.00000E-03
+                    Density Cutoff :  1.00000E-04
+                  Maximum Velocity :  1.00000E+10
+               Maximum Temperature :  1.01000E+20
+
+
+
+
+   EULER/ALE/SPH TRANSPORT OPTIONS
+
+     ALE/Eul energy transport type :  Total energy
+               Transport algorithm :  SLIC
+     Mat. vel. tstep safety factor :  1.00000E+00
+
+
+
+
+   METHOD OF CALCULATING CHARACTERISTIC ZONE DIMENSION
+
+                     Method to Use :  Diagonals
+
+
+
+
+   METHOD OF UPDATING LAG/ALE CELL DENSITIES AND COMPRESSIONS
+
+                     Method to Use :  Automatic
+
+
+
+
+
+ 
+   MATERIALS
+
+
+
+                         MATERIAL NAME: Basalt                        
+
+
+                     Equation of State             Linear                                                                          
+
+          Reference density                      (g/cm3   ) 3.00000E+00
+          Bulk Modulus                           (kPa     ) 3.80000E+07
+          Reference Temperature                  (K       ) 2.95150E+02
+          Specific Heat                          (J/kgK   ) 0.00000E+00
+          Thermal Conductivity                   (J/mKs   ) 0.00000E+00
+
+
+                     Strength                      Elastic                                                                         
+
+          Shear Modulus                          (kPa     ) 2.28000E+07
+
+
+                     Failure                       None                                                                            
+
+
+
+                     Erosion                       None                                                                            
+
+
+
+                     Material Cutoffs              
+
+          Maximum Expansion                      (none    ) 1.00000E-01
+          Minimum Density Factor                 (none    ) 1.00000E-04
+          Minimum Density Factor (SPH)           (none    ) 2.00000E-01
+          Maximum Density Factor (SPH)           (none    ) 3.00000E+00
+          Minimum Soundspeed                     (m/s     ) 1.00000E-06
+          Maximum Soundspeed (SPH)               (m/s     ) 1.01000E+20
+          Maximum Temperature                    (K       ) 1.01000E+20
+
+
+           Reference: 
+                                                                                                                                                                                                                                                                
+
+
+           Notes: 
+                                                                                                                                                                                                                                                                
+
+
+
+
+
+
+
+
+
+ 
+   BOUNDARY CONDITIONS
+
+
+
+                     Fixed Support : General X,Y Velocity                                            
+
+           Constant X velocity         :  0.00000E+00
+           Constant Y velocity         :  0.00000E+00
+
+
+
+
+
+
+                     Force : General Time Dependent Force                                            
+
+                     Associated Loadcase ID :        1
+
+              Time           X-Force         Y-Force       Z-Force
+           0.00000E+00     0.00000E+00     0.00000E+00   0.00000E+00
+           5.92900E-02     0.00000E+00     0.00000E+00   0.00000E+00
+           5.93000E-02     0.00000E+00     4.76493E+01   0.00000E+00
+           2.78030E-01     0.00000E+00     4.76493E+01   0.00000E+00
+           2.78040E-01     0.00000E+00     0.00000E+00   0.00000E+00
+           1.11216E+00     0.00000E+00     0.00000E+00   0.00000E+00
+
+
+
+
+
+
+
+
+
+ 
+     UNSTRUCTURED PARTS
+
+           PART                  NO. ELEMENTS
+
+       1   SYS\Surface                    325
+
+           TOTAL NUMBER ELEMENTS:         325
+           TOTAL NUMBER NODES:            364
+
+
+
+
+   SUBGRID ACTIVATION / DEACTIVATION TIMES
+
+           SUBGRID        ACTIVATION   DEACTIVATION
+                             TIME          TIME
+
+
+
+
+
+ 
+   EDITS
+
+       EDIT FREQUENCY
+       EDIT TYPE   HOW DONE          START           END     INCREMENT
+
+       SAVE        by times    0.00000E+00   1.11216E+00   2.22432E-01
+       GRIDVAR     Never     
+       ENERGYSUM   by times    0.00000E+00   1.11216E+00   2.22432E-01
+       CYCSUM      Never     
+       HISTORY     by cycles             0      10000000             1
+       USER        Never     
+
+ 
+   INTERACTIONS
+
+          Using trajectory contact:  Yes
+            Full SPH radius (beta):  No        
+                  Search Algorithm:  Cube            
+              Retention of Inertia:  Yes       
+                  Self-interaction:  Yes       
+             Self-interaction Tol.:  2.00000E-01
+
+     No parts are included in interactions
+
+
+
+
+
+
+
+
+
+CYCLE       0, TIME=  0.000E+00                                                                                  ENERGY SUMMARY EDIT
+ 
+
+
+ENERGY AND MOMENTUM PARTITIONING BY MATERIALS
+
+                                                         INTERNAL   KINETIC   DISTORT
+MATERIAL                                 MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM
+
+Basalt                              6.000E+02 2.000E+02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+---------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+
+
+ENERGY AND MOMENTUM PARTITIONING BY PARTS
+
+                                                         INTERNAL   KINETIC   DISTORT                     HOURGLASS   CONTACT
+PART                                     MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM    ENERGY    ENERGY
+
+SYS\Surface                         6.000E+02 2.000E+02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+-----------------------------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+
+
+ENERGY AND MOMENTUM BALANCE
+
+INITIAL     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+EXTERNAL      WORK 0.00000E+00    X-IMPULSE 0.00000E+00    Y-IMPULSE 0.00000E+00
+CONTACT     ENERGY 0.00000E+00
+CURRENT     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+--------------------------------------------------------------------------------
+ERROR              0.00000E+00              0.00000E+00              0.00000E+00
+
+CYCLE    3927, TIME=  2.224E-01                                                                                  ENERGY SUMMARY EDIT
+ 
+
+
+ENERGY AND MOMENTUM PARTITIONING BY MATERIALS
+
+                                                         INTERNAL   KINETIC   DISTORT
+MATERIAL                                 MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM
+
+Basalt                              6.000E+02 2.000E+02 1.372E-02 2.395E-03 0.000E+00 1.716E-04-1.444E+00
+---------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.372E-02 2.395E-03 0.000E+00 1.716E-04-1.444E+00
+
+
+ENERGY AND MOMENTUM PARTITIONING BY PARTS
+
+                                                         INTERNAL   KINETIC   DISTORT                     HOURGLASS   CONTACT
+PART                                     MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM    ENERGY    ENERGY
+
+SYS\Surface                         6.000E+02 2.000E+02 1.372E-02 2.395E-03 0.000E+00 1.716E-04-1.444E+00 2.696E-04 0.000E+00
+-----------------------------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.372E-02 2.395E-03 0.000E+00 1.716E-04-1.444E+00 2.696E-04 0.000E+00
+
+
+ENERGY AND MOMENTUM BALANCE
+
+INITIAL     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+EXTERNAL      WORK 1.59236E-02    X-IMPULSE 1.71610E-04    Y-IMPULSE-1.44368E+00
+CONTACT     ENERGY 0.00000E+00
+CURRENT     ENERGY 1.61144E-02   X-MOMENTUM 1.71608E-04   Y-MOMENTUM-1.44368E+00
+--------------------------------------------------------------------------------
+ERROR              1.90807E-04             -2.14161E-09             -8.09568E-09
+
+CYCLE    7852, TIME=  4.449E-01                                                                                  ENERGY SUMMARY EDIT
+ 
+
+
+ENERGY AND MOMENTUM PARTITIONING BY MATERIALS
+
+                                                         INTERNAL   KINETIC   DISTORT
+MATERIAL                                 MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM
+
+Basalt                              6.000E+02 2.000E+02 1.189E-02 4.722E-03 0.000E+00 2.063E-04-2.026E+00
+---------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.189E-02 4.722E-03 0.000E+00 2.063E-04-2.026E+00
+
+
+ENERGY AND MOMENTUM PARTITIONING BY PARTS
+
+                                                         INTERNAL   KINETIC   DISTORT                     HOURGLASS   CONTACT
+PART                                     MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM    ENERGY    ENERGY
+
+SYS\Surface                         6.000E+02 2.000E+02 1.189E-02 4.722E-03 0.000E+00 2.063E-04-2.026E+00 6.217E-04 0.000E+00
+-----------------------------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.189E-02 4.722E-03 0.000E+00 2.063E-04-2.026E+00 6.217E-04 0.000E+00
+
+
+ENERGY AND MOMENTUM BALANCE
+
+INITIAL     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+EXTERNAL      WORK 1.64868E-02    X-IMPULSE 2.06290E-04    Y-IMPULSE-2.02647E+00
+CONTACT     ENERGY 0.00000E+00
+CURRENT     ENERGY 1.66103E-02   X-MOMENTUM 2.06288E-04   Y-MOMENTUM-2.02647E+00
+--------------------------------------------------------------------------------
+ERROR              1.23492E-04             -2.14161E-09             -1.04902E-08
+
+CYCLE   11777, TIME=  6.673E-01                                                                                  ENERGY SUMMARY EDIT
+ 
+
+
+ENERGY AND MOMENTUM PARTITIONING BY MATERIALS
+
+                                                         INTERNAL   KINETIC   DISTORT
+MATERIAL                                 MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM
+
+Basalt                              6.000E+02 2.000E+02 1.234E-02 4.190E-03 0.000E+00 2.349E-04-1.636E+00
+---------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.234E-02 4.190E-03 0.000E+00 2.349E-04-1.636E+00
+
+
+ENERGY AND MOMENTUM PARTITIONING BY PARTS
+
+                                                         INTERNAL   KINETIC   DISTORT                     HOURGLASS   CONTACT
+PART                                     MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM    ENERGY    ENERGY
+
+SYS\Surface                         6.000E+02 2.000E+02 1.234E-02 4.190E-03 0.000E+00 2.349E-04-1.636E+00 7.530E-04 0.000E+00
+-----------------------------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.234E-02 4.190E-03 0.000E+00 2.349E-04-1.636E+00 7.530E-04 0.000E+00
+
+
+ENERGY AND MOMENTUM BALANCE
+
+INITIAL     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+EXTERNAL      WORK 1.64868E-02    X-IMPULSE 2.34934E-04    Y-IMPULSE-1.63586E+00
+CONTACT     ENERGY 0.00000E+00
+CURRENT     ENERGY 1.65299E-02   X-MOMENTUM 2.34932E-04   Y-MOMENTUM-1.63586E+00
+--------------------------------------------------------------------------------
+ERROR              4.30925E-05             -2.14161E-09             -1.04902E-08
+
+CYCLE   15702, TIME=  8.898E-01                                                                                  ENERGY SUMMARY EDIT
+ 
+
+
+ENERGY AND MOMENTUM PARTITIONING BY MATERIALS
+
+                                                         INTERNAL   KINETIC   DISTORT
+MATERIAL                                 MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM
+
+Basalt                              6.000E+02 2.000E+02 1.393E-02 2.533E-03 0.000E+00-3.563E-04-1.244E+00
+---------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.393E-02 2.533E-03 0.000E+00-3.563E-04-1.244E+00
+
+
+ENERGY AND MOMENTUM PARTITIONING BY PARTS
+
+                                                         INTERNAL   KINETIC   DISTORT                     HOURGLASS   CONTACT
+PART                                     MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM    ENERGY    ENERGY
+
+SYS\Surface                         6.000E+02 2.000E+02 1.393E-02 2.533E-03 0.000E+00-3.563E-04-1.244E+00 8.281E-04 0.000E+00
+-----------------------------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.393E-02 2.533E-03 0.000E+00-3.563E-04-1.244E+00 8.281E-04 0.000E+00
+
+
+ENERGY AND MOMENTUM BALANCE
+
+INITIAL     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+EXTERNAL      WORK 1.64868E-02    X-IMPULSE-3.56253E-04    Y-IMPULSE-1.24432E+00
+CONTACT     ENERGY 0.00000E+00
+CURRENT     ENERGY 1.64677E-02   X-MOMENTUM-3.56256E-04   Y-MOMENTUM-1.24432E+00
+--------------------------------------------------------------------------------
+ERROR             -1.91354E-05             -2.14161E-09             -1.04902E-08
+
+CYCLE   19627, TIME=  1.112E+00                                                                                  ENERGY SUMMARY EDIT
+ 
+
+
+ENERGY AND MOMENTUM PARTITIONING BY MATERIALS
+
+                                                         INTERNAL   KINETIC   DISTORT
+MATERIAL                                 MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM
+
+Basalt                              6.000E+02 2.000E+02 1.552E-02 9.363E-04 0.000E+00-2.571E-04-7.885E-01
+---------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.552E-02 9.363E-04 0.000E+00-2.571E-04-7.885E-01
+
+
+ENERGY AND MOMENTUM PARTITIONING BY PARTS
+
+                                                         INTERNAL   KINETIC   DISTORT                     HOURGLASS   CONTACT
+PART                                     MASS    VOLUME    ENERGY    ENERGY    ENERGY XMOMENTUM YMOMENTUM    ENERGY    ENERGY
+
+SYS\Surface                         6.000E+02 2.000E+02 1.552E-02 9.363E-04 0.000E+00-2.571E-04-7.885E-01 8.734E-04 0.000E+00
+-----------------------------------------------------------------------------------------------------------------------------
+TOTALS                              6.000E+02 2.000E+02 1.552E-02 9.363E-04 0.000E+00-2.571E-04-7.885E-01 8.734E-04 0.000E+00
+
+
+ENERGY AND MOMENTUM BALANCE
+
+INITIAL     ENERGY 0.00000E+00   X-MOMENTUM 0.00000E+00   Y-MOMENTUM 0.00000E+00
+EXTERNAL      WORK 1.64868E-02    X-IMPULSE-2.57059E-04    Y-IMPULSE-7.88485E-01
+CONTACT     ENERGY 0.00000E+00
+CURRENT     ENERGY 1.64600E-02   X-MOMENTUM-2.57061E-04   Y-MOMENTUM-7.88485E-01
+--------------------------------------------------------------------------------
+ERROR             -2.68340E-05             -2.14161E-09             -1.04902E-08
+ 
+ 
+SIMULATION ELAPSED TIME SUMMARY
+ 
+EXECUTION FROM CYCLE        1 TO    19627
+ELAPSED RUN TIME IN SOLVER =      4.68500E-02 Minutes
+ELAPSED RUN TIME IN EDITS  =      1.07933E-01 Minutes
+TOTAL ELAPSED RUN TIME     =      1.54783E-01 Minutes
+ 
