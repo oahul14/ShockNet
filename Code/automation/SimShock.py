@@ -293,11 +293,11 @@ class DomainObject(object):
         print("Total time usage: ", iter_end - iter_start)
         print("Average time usage per iteration: ", (iter_end - iter_start)/iters)
 
-def run_simulation(data_type, material, n):
+def run_simulation(src_path, data_type, material, n):
     dm = DomainObject()
     dm.config_geometry(material)
     dm.config_analysis()
-    path = os.path.join(os.path.dirname("/your-path-to/NumericalResults"), data_type + material)
+    path = os.path.join(os.path.dirname(src_path), data_type + material)
     if not os.path.isdir(path):
         os.mkdir(path)
     if data_type == "nodal":
@@ -312,7 +312,8 @@ if __name__ == "__main__":
     n = 3000
     materials = ["Dolomite", "Limestone"]
     data_type = "nodal"
+    src_path = "/your-path-to/NumericalResults"
     for mat in materials:
-        run_simulation(data_type, mat, n)
+        run_simulation(src_path, data_type, mat, n)
 
 
