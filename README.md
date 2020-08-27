@@ -2,9 +2,20 @@
 
 ## A Deep Learning Approach to Identify Maximum Stress Distribution Caused by Shock Wave in Geo-mechanical Materials
 
+### Contents
+
+1. [Project Description](#1.-Project-Description)
+
+
+2. [Data Generation](#2.-Data-Generation)
+3. [ShockNet](#3.-ShockNet)
+4. [Code Structure](#4.-Code-Structure-and-Utilities)
+5. [Results](#5.-Results)
+6. [References](#6.-References)
+
 ### 1. Project Description
 
-This project aimed to explore the potential of neural networks as an alternative approach to predict stress distribution when a shockwave is cast on a domain in 2D. The stress distribution is tracked when the maximum stress overtime occurred. Randomised shockwaves were simulated to increase the variance of the dataset. ANSYS Student Edition, an open-source finite element analysis (FEA) software was used to generate stress distribution images and initial condition images were projected via saved boundary conditions, force allocations, material densities, etc. ShockNet, an encoder-decoder, has been designed to extract features from initial condition inputs in a multi-scaled way. Both 3-level and 4-level ShockNets show good convergence trends within 250 epochs and abilities to render the initial condition inputs into stress contour predictions. TShockNet was also implemented which could also predict numeric maximum and minimum stress values of the result stress field.
+This project aimed to explore the potential of neural networks as an alternative approach to predict stress distribution when a shockwave is cast on a domain in 2D. The stress distribution is tracked when the maximum stress overtime occurred. Randomised shockwaves were simulated to increase the variance of the dataset. ANSYS Student Edition, an open-source finite element analysis (FEA) software was used to generate stress distribution images. ShockNet, an encoder-decoder, has been designed to extract features from initial condition inputs in a multi-scaled way. 
 
 ### 2. Data Generation
 
@@ -60,7 +71,8 @@ Figure 6 illustrated how codes in this project were managed and structured. The 
   * ------> [predictions](.Code/predictions/)
 4. Run [postprocessing](.Code/postprocessing/) codes to plot epoch series analysis, visual comparison between ground truths and ShockNet-predicted stress fields
   * ------> [analysis](.Code/analysis/)
-    To run codes in this project, instructions in details can be found [here](./Code/README.md)
+
+To run codes in this project, instructions in details can be found [here](./Code/README.md)
 
 | ![figure5.png](./img/figure6/code_structure.png) |
 | :--------------------------------------: |
@@ -99,7 +111,7 @@ Transferred learning shows that the ability of ShockNet to generalise what has b
 | :--------------------------------------: |
 | *Figure 11* : Comparison between ordinary learning using 48x96 dataset and transferred learning using 64x128 dataset. Parameters were inherited from the ShockNet4 after trained for 250 epochs with 48x96 dataset. |
 
-### References
+### 6. References
 * Kaiming et al., 2017. 
 * Ronneberger et al., 2015. 
 * Hu et al., 2017.  
