@@ -16,9 +16,9 @@ ANSYS Student Edition ([ANSYS-SE](https://www.ansys.com/en-gb/academic/free-stud
 
 Heaviside step function was widely used to simulate a shock wave (Villarreal 2006; Baty et al., 2007; Baty and Margolin, 2018):
 
-$$H(E) = \begin{cases} E,&{if\ t\in[t_{start}, t_{end}]} \\ 0,&others \end{cases}$$
+![](./img/heaviside-eqn.png)
 
-where $E$ stands for the kinetic energy for each node and $t_{start}$ and $t_{end}$ define when the shock was added to upper boundary. Figure 1 shows screenshots of established domain in ANSYS-SE and the initialisations. Initial conditions and simulated maximum and minimum stress values were saved as the name of the predicted stress field.
+where E stands for the kinetic energy for each node and is non-zero only if t is within the shock cast period. Figure 1 shows screenshots of established domain in ANSYS-SE and the initialisations. Initial conditions and simulated maximum and minimum stress values were saved as the name of the predicted stress field.
 | ![figure1.png](./img/figure1/figure1.png) |
 | :--------------------------------------: |
 | *Figure 1* : Screenshots from ANSYS-SE. a) and b) were examples for the initial condition and solved results from ANSYS-SE. The lower part c) refers to discontinuities in force. |
@@ -52,14 +52,14 @@ The general architecture of ShockNet was shown in Figure 4 and for each depth/le
 ### 4. Code Structure and Utilities
 Figure 6 illustrated how codes in this project were managed and structured. The workflow could be summarised in following steps:
 1. Run [automation](.Code/automation/) codes to simulate via ANSYS-SE 
-  * $\rightarrow$ [NumericalResults](.data/NumericalResults/)
+  * ------> [NumericalResults](.data/NumericalResults/)
 2. Run [preprocessing](.Code/preprocessing/) scripts to clean, reshape, rename and restore ground truth stress fields 
-  * $\rightarrow$ [shock-datasets](.data/shock-datasets)
+  * ------> [shock-datasets](.data/shock-datasets)
 3. Run [```main()```](.Code/main.py) using available GPU to run training sessions, save trained models and experiment results, and predict stress fields using saved ShockNets
-  * $\rightarrow$ [experiments](.Code/experiments/)
-  * $\rightarrow$ [predictions](.Code/predictions/)
+  * ------> [experiments](.Code/experiments/)
+  * ------> [predictions](.Code/predictions/)
 4. Run [postprocessing](.Code/postprocessing/) codes to plot epoch series analysis, visual comparison between ground truths and ShockNet-predicted stress fields
-  * $\rightarrow$ [analysis](.Code/analysis/)
+  * ------> [analysis](.Code/analysis/)
     To run codes in this project, instructions in details can be found [here](./Code/README.md)
 
 | ![figure5.png](./img/figure6/code_structure.png) |
