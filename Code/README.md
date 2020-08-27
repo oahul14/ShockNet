@@ -3,7 +3,7 @@
 ## ANSYS-SE Automation
 1. Download and install up-to-date ANSYS-SE from [here](https://www.ansys.com/en-gb/academic/free-student-products)
 2. Open [shock_automation](../shock_automation) and run ```shock_automation.wbpj``` file in ANSYS workbench.
-3. Double click **Mechanical** and open (or just copy & paste) [```SimShock.py```](.automation/SimShock.py) in the automation tab.
+3. Double click **Mechanical** and open (or just copy & paste) [```SimShock.py```](./automation/SimShock.py) in the automation tab.
 4. Run scripts like following in the Python environment provided by **Mechanical**:
 ```
 n = 3000
@@ -43,7 +43,7 @@ optional arguments:
   --materials [MATERIALS [MATERIALS ...]], -m [MATERIALS [MATERIALS ...]]
                         to assign materials
 ```
-As the datasets are too big to upload to GitHub, [NumericalResults](../data/NumericalResults), [temp](../data/temp/) and [shock-datasets](../data/shock-datasets/) are empty in this repository. 
+As the datasets are too big to upload to GitHub, [NumericalResults](../data/NumericalResults/), [temp](../data/temp/) and [shock-datasets](../data/shock-datasets/) are empty in this repository. 
 [This link](https://drive.google.com/drive/folders/1K7V2jEa3il9fAyiAqmeu8gjdomgjBf1_?usp=sharing) enables the user to download preprocessed dataset of 48x96, 64x128, 128x256 and 320x640 in resolution for BDs and NDs.
 
 ## Training and Predicting
@@ -93,7 +93,7 @@ optional arguments:
   --weightdecay WEIGHTDECAY, -w WEIGHTDECAY
                         weight decay value
 ```
-Predicted stress fields and convergence results will be saved in [prediction](.prediction/) and [experiments](.experiments/), respectively. For convenience, prediction results used for postprocessing in the main page have been stored in [prediction](.prediction/) as zipped files. 
+Predicted stress fields and convergence results will be saved in [prediction](./prediction/) and [experiments](./experiments/), respectively. For convenience, prediction results used for postprocessing in the main page have been stored in [prediction](./prediction/) as zipped files. 
 
 * Considering the limitation of personal desktops, [Colab](colab.research.google.com) is recommended to reproduce results.
 

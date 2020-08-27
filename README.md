@@ -5,8 +5,6 @@
 ### Contents
 
 1. [Project Description](#1.-Project-Description)
-
-
 2. [Data Generation](#2.-Data-Generation)
 3. [ShockNet](#3.-ShockNet)
 4. [Code Structure](#4.-Code-Structure-and-Utilities)
@@ -62,15 +60,15 @@ The general architecture of ShockNet was shown in Figure 4 and for each depth/le
 
 ### 4. Code Structure and Utilities
 Figure 6 illustrated how codes in this project were managed and structured. The workflow could be summarised in following steps:
-1. Run [automation](.Code/automation/) codes to simulate via ANSYS-SE 
-  * ------> [NumericalResults](.data/NumericalResults/)
+1. Run [automation](./Code/automation/) codes to simulate via ANSYS-SE 
+  * ------> [NumericalResults](./data/NumericalResults/)
 2. Run [preprocessing](.Code/preprocessing/) scripts to clean, reshape, rename and restore ground truth stress fields 
   * ------> [shock-datasets](.data/shock-datasets)
-3. Run [```main()```](.Code/main.py) using available GPU to run training sessions, save trained models and experiment results, and predict stress fields using saved ShockNets
-  * ------> [experiments](.Code/experiments/)
-  * ------> [predictions](.Code/predictions/)
-4. Run [postprocessing](.Code/postprocessing/) codes to plot epoch series analysis, visual comparison between ground truths and ShockNet-predicted stress fields
-  * ------> [analysis](.Code/analysis/)
+3. Run [```main()```](./Code/main.py) using available GPU to run training sessions, save trained models and experiment results, and predict stress fields using saved ShockNets
+  * ------> [experiments](./Code/experiments/)
+  * ------> [predictions](./Code/predictions/)
+4. Run [postprocessing](./Code/postprocessing/) codes to plot epoch series analysis, visual comparison between ground truths and ShockNet-predicted stress fields
+  * ------> [analysis](./Code/analysis/)
 
 To run codes in this project, instructions in details can be found [here](./Code/README.md)
 
