@@ -93,7 +93,7 @@ class PreProc(object):
         if not isdir(src_path):
             print("No src path %s found" % src_path)
             return
-            
+
         # boundaryTemp or nodalTemp    
         data_type += "Temp"                                                                          
         des_path = osjoin(self.temp_dir, data_type)                                                      
@@ -179,24 +179,23 @@ class PreProc(object):
         def name_with_shape(fname, shp):
             return fname + '_' + str(shp[1]) + 'x' + str(shp[0])
 
-        clnd_parent_dir = osjoin(self.data_dir, type_dir + "Temp", "ResultsPNG")        # ../data/*Temp/
+        clnd_parent_dir = osjoin(self.data_dir, type_dir + "Temp", "ResultsPNG")        # e.g. <-- ../data/*Temp/ResultsPNG/
         if not isdir(clnd_parent_dir):
             print("No temp directory found %s" % clnd_parent_dir)
             return
 
-        des_path = osjoin(self.shockdataset_dir, type_dir)            # ../data/shock-datasets/nodal/
+        des_path = osjoin(self.shockdataset_dir, type_dir)                              # e.g. --> ../data/shock-datasets/nodal/
         ensure_isdir(des_path)
-
-        og_des_path = osjoin(des_path, name_with_shape(type_dir, og_shape))                    # e.g. ../data/shock-datasets/nodal/nodal_320x640/
+        og_des_path = osjoin(des_path, name_with_shape(type_dir, og_shape))             # e.g. --> ../data/shock-datasets/nodal/nodal_320x640/
         ensure_isdir(og_des_path)
-        og_des_path = osjoin(og_des_path, "ResultsPNG")                                           # ../data/shock-datasets/nodal/nodal_320x640/ResultsPNG/
+        og_des_path = osjoin(og_des_path, "ResultsPNG")                                 # e.g. --> ../data/shock-datasets/nodal/nodal_320x640/ResultsPNG/
         ensure_isdir(og_des_path)
         reshape_des_paths = []
         if new_shapes:
             for shp in new_shapes:
-                reshape_des_path = osjoin(des_path, name_with_shape(type_dir, shp))            # e.g. ../data/shock-datasets/nodal_48x96/
+                reshape_des_path = osjoin(des_path, name_with_shape(type_dir, shp))         
                 ensure_isdir(reshape_des_path)
-                reshape_des_path = osjoin(reshape_des_path, "ResultsPNG")                      # ../data/shock-datasets/nodal_48x96/ResultsPNG/
+                reshape_des_path = osjoin(reshape_des_path, "ResultsPNG")                      
                 ensure_isdir(reshape_des_path)
                 reshape_des_paths.append(reshape_des_path)
 

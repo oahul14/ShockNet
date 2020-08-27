@@ -1,5 +1,6 @@
 import torch
 from os.path import join as osjoin
+import torchvision
 
 def predict(model, device, mseloss, l1loss, data_loader, dirs):
     model.eval()

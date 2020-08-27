@@ -48,7 +48,7 @@ model_dic = {
 }
 
 def load_data(dname):
-    """Load data as in dname saved in ../data/dname/
+    """Load data as in dname saved in ../data/shock-datasets/dname/
 
     Args:
         dname (str): data folder name
@@ -59,7 +59,7 @@ def load_data(dname):
     Returns:
         Dataset: data parsed by Dataset class
     """
-    data_dir = osjoin(cur_dir, dirname("../data/"), dname)
+    data_dir = osjoin(cur_dir, dirname("../data/shock-datasets/"), dname)
     if not isdir(data_dir):
         print("%s not found as a directory" % data_dir)
         raise NameError
