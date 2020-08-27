@@ -110,6 +110,9 @@ Transferred learning shows that the ability of ShockNet to generalise what has b
 | *Figure 11* : Comparison between ordinary learning using 48x96 dataset and transferred learning using 64x128 dataset. Parameters were inherited from the ShockNet4 after trained for 250 epochs with 48x96 dataset. |
 
 ### 6. References
-* Kaiming et al., 2017. 
-* Ronneberger et al., 2015. 
-* Hu et al., 2017.  
+* Baty, R.S. and Margolin, L.G., 2018. Modern infinitesimals and the entropy jump across an inviscid shock wave. International Journal of Aeroacoustics, 17(4-5), pp.502-520.
+* Baty, R.S., Tucker, D.H. and Stanescu, D., 2008. Nonstandard jump functions for radially symmetric shock waves (No. LA-14380). Los Alamos National Laboratory (LANL), Los Alamos, NM.
+* Villarreal, F., 2006. Heaviside generalized functions and shock waves for a Burger kind equation. Integral Transforms and Special Functions, 17(2-3), pp.213-219.
+* Ronneberger, O., Fischer, P. and Brox, T., 2015, October. U-net: Convolutional networks for biomedical image segmentation. In International Conference on Medical image computing and computer-assisted intervention (pp. 234-241). Springer, Cham.
+* He, K., Zhang, X., Ren, S. and Sun, J., 2016. Deep residual learning for image recognition. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 770-778).
+* Hu, J., Shen, L. and Sun, G., 2018. Squeeze-and-excitation networks. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 7132-7141).
